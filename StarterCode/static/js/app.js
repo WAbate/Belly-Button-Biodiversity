@@ -1,6 +1,6 @@
 // Read the json file using d3
 function buildMetaData(sample) {
-    d3.json(".//samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
       var metadata = data.metadata;
       console.log(metadata);
       
