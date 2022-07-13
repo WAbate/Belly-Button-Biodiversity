@@ -30,6 +30,7 @@ function init(){
     var otu_ids = result.otu_ids;
     var otu_labels = result.otu_labels; 
    
+    //Create Bubble Graph
     var trace1 = {
         x: otu_ids,
         y: sample_values,
@@ -54,6 +55,7 @@ function init(){
     };
     Plotly.newPlot('bubble', data, layout); 
  
+    //Create Bar Chart
     var trace1 = {
         x: sample_values.slice(0,10).reverse(),
         y: otu_ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
@@ -71,6 +73,7 @@ function init(){
     Plotly.newPlot("bar", data, layout);  
     });
   }
+  //Gauge Time
   function updateMetadata(sample) {
     d3.json("samples.json").then((data) => {
         var metadata = data.metadata;
@@ -87,7 +90,7 @@ function init(){
         domain: { x: [0, 1], y: [0, 1] },
         marker: {size: 28, color:"#4DE30"},
         value: result.wfreq,
-        title: 'Belly Button Washing Frequency<br> Scrubs per Week',
+        title: 'Belly Button Washing Frequency <br> In Scrubs per Week:',
         titlefont: {family: '"Arial'},
         type: "indicator",
         mode: "number+gauge",
