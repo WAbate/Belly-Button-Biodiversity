@@ -69,3 +69,36 @@ function buildCharts(sample) {
       Plotly.newPlot("bar", barChartData, barChartLayout);
     });
   };
+
+  // Select the element from dropdown references 
+ // and then populate it by using the list of sample names
+  function init() {
+    var elementDropdown = d3.select("#selDataset");
+  
+    d3.json("samples.json").then((data) => {
+      var name = data.names;
+  
+      name.forEach((sample) => {
+        elementDropdown
+          .append("option")
+          .text(sample)
+          .property("value", sample);
+      })
+
+   // Use the sample data from the list to build the plots
+   var sampleData = name[0];
+   buildCharts(sampleData);
+   buildMetaData(sampleData);
+ });
+};
+
+function optionChanged(newSample) {
+    // Retrieve new data each time
+    buildCharts(newSample);
+    buildMetaData(newSample);
+  };
+
+  
+// Start dashboard
+  init()
+Footer
